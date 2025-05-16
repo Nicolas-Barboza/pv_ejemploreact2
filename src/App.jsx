@@ -16,26 +16,31 @@ function App() {
     setFiltrados(usuarios.filter(usuario => usuario.login === login))
     setModo("search");
   }
-      
-    const handleSumbit = (e) => {
-        e.preventDefault();
-        const usuario = { ...usuario, id: nextid++ };
-        //Aqui se debe validar los inputs
-        setUsuarios([...usuarios, usuario]);
-        setModo("list");
-        setUsuario("");//para que en la proxima alta este vacio
-    }
+
+  const handleSumbit = (e) => {
+    e.preventDefault();
+    const usuario = { ...usuario, id: nextid++ };
+    //Aqui se debe validar los inputs
+    setUsuarios([...usuarios, usuario]);
+    setModo("list");
+    setUsuario("");//para que en la proxima alta este vacio
+  }
+
+  const handleClickEdit = (usuarioEdit) => {
+    alert(usuarioEdit.login);
+    setModo("edit");
+  }
 
   return (
     <>
       <div>
         <NavBar login={[login, setLogin]} modo={[modo, setModo]} handleClickBuscar={handleClickBuscar} ></NavBar>
-        {(()=>{
+        {(() => {
           switch (modo) {
-            case "list": return <UsuarioTabla usuarios={usuarios}></UsuarioTabla>
-            case "search": return <UsuarioTabla usuarios={filtrados}></UsuarioTabla>
+            case "list": return <UsuarioTabla usuarios={usuarios} handleClickEdit={handleClickEdit}></UsuarioTabla>
+            case "search": return <UsuarioTabla usuarios={filtrados} handleClickEdit={handleClickEdit}></UsuarioTabla>
             case "new": return <UsuarioForm usuarios={[usuario, setUsuario]} handleSumbit={handleSumbit}></UsuarioForm>
-
+            case "edit": return <UsuarioForm usuarios={[usuario, setUsuario]} handleSumbit={handleSumbit}></UsuarioForm>
           }
         })()}
       </div>

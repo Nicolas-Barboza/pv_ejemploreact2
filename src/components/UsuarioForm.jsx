@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function UsuarioForm(usuario,handleSumbit){
+function UsuarioForm({usuario,handleSumbit}){
     const [usuarioEdit, setUsuarioEdit] = usuario;
     return (
         <div>

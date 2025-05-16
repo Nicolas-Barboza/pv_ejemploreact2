@@ -1,4 +1,4 @@
-function UsuarioTabla({ usuarios }) {
+function UsuarioTabla({ usuarios,handleClickEdit }) {
 
     return (
         <div>
@@ -18,7 +18,7 @@ function UsuarioTabla({ usuarios }) {
                             <td>{usuario.id}</td>
                             <td>{usuario.login}</td>
                             <td><a href="#" onClick={() => alert(usuario.id)}>Eliminar</a></td>
-                            <td><a href="#" onClick={() => alert(usuario.id)}>Editar</a></td>
+                            <td><a href="#" onClick={() => handleClickEdit(usuario)}>Editar</a></td>
                         </tr>
                     
                     )}
