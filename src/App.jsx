@@ -19,15 +19,19 @@ function App() {
 
   const handleSumbit = (e) => {
     e.preventDefault();
-    const usuario = { ...usuario, id: nextid++ };
-    //Aqui se debe validar los inputs
-    setUsuarios([...usuarios, usuario]);
+    if (modo === "edit") {
+      setUsuarios(usuarios => [...usuarios.filter(u => u.id !== usuario.id), usuario]);
+    }else {
+      usuario.id = nextid++;
+      //Aqui se debe validar los inputs
+      setUsuarios([...usuarios, usuario]);
+    }
     setModo("list");
     setUsuario("");//para que en la proxima alta este vacio
   }
 
   const handleClickEdit = (usuarioEdit) => {
-    alert(usuarioEdit.login);
+    setUsuario(usuarioEdit);
     setModo("edit");
   }
 
@@ -39,7 +43,7 @@ function App() {
           switch (modo) {
             case "list": return <UsuarioTabla usuarios={usuarios} handleClickEdit={handleClickEdit}></UsuarioTabla>
             case "search": return <UsuarioTabla usuarios={filtrados} handleClickEdit={handleClickEdit}></UsuarioTabla>
-            case "new": return <UsuarioForm usuarios={[usuario, setUsuario]} handleSumbit={handleSumbit}></UsuarioForm>
+            case "new": 
             case "edit": return <UsuarioForm usuarios={[usuario, setUsuario]} handleSumbit={handleSumbit}></UsuarioForm>
           }
         })()}
