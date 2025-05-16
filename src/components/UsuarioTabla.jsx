@@ -2,6 +2,7 @@ function UsuarioTabla({ usuarios }) {
 
     return (
         <div>
+            <h3>Lista de Usuarios</h3>
             <table border="1" style={{borderCollapse:"collapse"}}>
                 <thead>
                     <tr>

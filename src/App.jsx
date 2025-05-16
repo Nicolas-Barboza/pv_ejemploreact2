@@ -3,6 +3,8 @@ import NavBar from './components/NavBar';
 import UsuarioForm from './components/usuarioForm';
 import UsuarioTabla from './components/usuarioTabla';
 
+let nextid = 0;
+
 function App() {
   const [usuarios, setUsuarios] = useState([{ id: 100, login: "Carlos", password: "12321" }, { id: 101, login: "Marina", password: "12321" }, { id: 102, login: "Mario", password: "12321" }]);
   const [usuario, setUsuario] = useState("");
@@ -17,8 +19,11 @@ function App() {
       
     const handleSumbit = (e) => {
         e.preventDefault();
+        const usuario = { ...usuario, id: nextid++ };
         //Aqui se debe validar los inputs
-        alert("Usuario guardado");
+        setUsuarios([...usuarios, usuario]);
+        setModo("list");
+        setUsuario("");//para que en la proxima alta este vacio
     }
 
   return (
@@ -32,7 +37,7 @@ function App() {
             case "new": return <UsuarioForm usuarios={[usuario, setUsuario]} handleSumbit={handleSumbit}></UsuarioForm>
 
           }
-        })}
+        })()}
       </div>
     </>
   )
