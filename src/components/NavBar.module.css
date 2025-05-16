@@ -1,0 +1,38 @@
+.horizontal a {
+    text-decoration: none;
+    text-align: center;
+    padding: 12px 10px;
+    font-family: Arial;
+    font-size: 8pt;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    border-right: 2px solid #607987;
+    background-color: #81888f;
+    letter-spacing: .08em
+}
+
+.horizontal a:hover {
+    background-color: #680000;
+    color: #a2becf
+}
+
+
+.horizontal input {
+    margin-left: 24px;
+    text-align: center;
+    padding: 10px;    
+    font-family: Arial;
+    font-size: 8pt;
+}
+
+.horizontal button {
+    text-align: center;
+    padding: 10px;
+    font-family: Arial;
+    font-size: 8pt;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-transform: uppercase;    
+    background-color: #81888f;    
+}
