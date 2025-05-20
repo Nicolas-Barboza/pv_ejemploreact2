@@ -1,7 +1,8 @@
 import { useState } from "react";
 import Titulo from "./Titulo";
-function UsuarioForm({usuarios,handleSumbit}){
-    const [usuarioEdit, setUsuarioEdit] = usuarios;
+
+function UsuarioForm({usuario,handleSumbit}){
+    const [usuarioEdit, setUsuarioEdit] = usuario;
     return (
         <div>
             <Titulo texto="Formulario de Usuario" />

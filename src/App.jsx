@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import NavBar from './components/NavBar';
-import UsuarioForm from './components/usuarioForm';
-import UsuarioTabla from './components/usuarioTabla';
+import UsuarioForm from './components/UsuarioForm'; // Corrected capitalization
+import UsuarioTabla from './components/UsuarioTabla'; // Corrected capitalization
 
 let nextid = 0;
 
@@ -17,11 +17,22 @@ function App() {
     setModo("search");
   }
 
+  useEffect(() => {
+    console.log("UseEfect 1");
+
+  });
+  useEffect(() => {
+    console.log("UseEfect 2");
+  }, []);
+  useEffect(() => {
+    console.log("UseEfect 3");
+  }
+    , [usuarios]);
   const handleSumbit = (e) => {
     e.preventDefault();
     if (modo === "edit") {
       setUsuarios(usuarios => [...usuarios.filter(u => u.id !== usuario.id), usuario]);
-    }else {
+    } else {
       usuario.id = nextid++;
       //Aqui se debe validar los inputs
       setUsuarios([...usuarios, usuario]);
@@ -43,7 +54,7 @@ function App() {
           switch (modo) {
             case "list": return <UsuarioTabla usuarios={usuarios} handleClickEdit={handleClickEdit}></UsuarioTabla>
             case "search": return <UsuarioTabla usuarios={filtrados} handleClickEdit={handleClickEdit}></UsuarioTabla>
-            case "new": 
+            case "new":
             case "edit": return <UsuarioForm usuarios={[usuario, setUsuario]} handleSumbit={handleSumbit}></UsuarioForm>
           }
         })()}

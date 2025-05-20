@@ -1,8 +1,7 @@
 function HeaderTabla({ columnas }) {
     const style = {
-        backgroundColor: "black",
-        color: "white",
-        fontSize: "20px"
+        fontFamily: "Arial",
+        backgroundColor: "yellow",
     }
   return (
     <thead>
