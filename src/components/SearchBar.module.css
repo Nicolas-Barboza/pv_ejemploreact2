@@ -1,53 +1,56 @@
-/* src/components/SearchBar.module.css */
-.searchContainer {
-    display: flex;
-    align-items: center;
-    height: 40px;
-    background-color: #f8f9fa;
-    border: 1px solid #ced4da;
-    border-radius: 20px;
-    box-sizing: border-box;
-    /* El padding izquierdo se maneja en el input, el derecho en el botón si es necesario */
-    /* padding-left: 15px; No es necesario si el input tiene su propio padding izquierdo */
+.search-container {
+  display: flex; /* Clave para alinear los hijos en una fila */
+  align-items: center; /* Centra los hijos verticalmente */
+  height: 40px; /* Altura similar a los botones de NavBar */
+  background-color: #f0f0f0; /* Un fondo ligeramente diferente para la barra */
+  border: 1px solid #ccc;
+  border-radius: 20px; /* Bordes redondeados para toda la barra */
+  padding: 0 8px 0 15px; /* Padding: Arriba Derecha Abajo Izquierda */
+  box-sizing: border-box;
+  flex-grow: 1; /* Permitir que la barra de búsqueda ocupe espacio */
+  max-width: 450px; /* Evita que sea demasiado ancha */
+  margin-left: 15px; /* Espacio respecto a los botones de acción */
 }
-
-.searchContainer:focus-within {
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-    border-color: #80bdff;
+.search-container label {
+  font-size: 0.9em;
+  color: #333;
+  margin-right: 8px; /* Espacio entre la etiqueta y el input */
+  white-space: nowrap; /* Evita que el texto de la etiqueta se divida en múltiples líneas */
+  flex-shrink: 0; /* Evita que la etiqueta se encoja */
 }
-
-.searchInput {
-    flex-grow: 1;
-    height: 100%;
-    border: none;
-    outline: none;
-    background-color: #ffffff; /* Fondo blanco explícito */
-    color: #213547; /* Color de texto oscuro explícito */
-    padding: 0 15px; /* Padding horizontal. Vertical es 0 por height:100% */
-    font-size: 0.9em;
-    /* Quitar el border-radius del input si el .searchContainer ya lo tiene y usamos overflow:hidden */
-    /* O aplicarlo así para que las esquinas internas sean cuadradas */
-    border-radius: 19px 0 0 19px; /* Para que haga juego con el contenedor si este tiene borde */
-    box-sizing: border-box;
+.search-input {
+  flex-grow: 1; /* El input toma el espacio restante */
+  flex-shrink: 1; /* Permite que el input se encoja si es necesario */
+  min-width: 100px; /* Un ancho mínimo para el input */
+  height: 100%;
+  border: none; /* Sin borde, ya que el contenedor principal tiene uno */
+  outline: none; /* Sin outline al hacer foco */
+  background-color: transparent; /* Fondo transparente para mostrar el del contenedor */
+  padding: 0 10px; /* Padding interno del input */
+  font-size: 0.9em;
+  color: #000000;
 }
-
-.searchIconButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 0 15px; /* Padding horizontal para el icono */
-    /* Quitar el border-radius del botón si el .searchContainer ya lo tiene y usamos overflow:hidden */
-    border-radius: 0 19px 19px 0; /* Para que haga juego con el contenedor */
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-    box-sizing: border-box;
-    /* margin-left: -1px; */ /* Considerar si es necesario para unir visualmente */
+.static-search-icon {
+  display: flex; /* Para centrar el SVG del icono si es necesario */
+  align-items: center;
+  justify-content: center;
+  color: #555; /* Color del icono */
+  flex-shrink: 0; /* Evita que el icono se encoja */
+  padding-right: 8px; /* Un poco de espacio si es el último elemento */
 }
-
-.searchIconButton:hover {
-    background-color: #0056b3;
+.static-search-icon svg { /* Estilo directo al SVG si es necesario */
+  width: 20px;
+  height: 20px;
+}
+/* Fuerza que se vea el fondo transparente en autofill */
+.search-input:-webkit-autofill,
+.search-input:-webkit-autofill:focus,
+.search-input:-webkit-autofill:hover,
+.search-input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+  box-shadow: 0 0 0 1000px transparent inset !important;
+  background-color: transparent !important;
+  color: #000 !important;
+  -webkit-text-fill-color: #000 !important;
+  transition: background-color 5000s ease-in-out 0s;
 }
