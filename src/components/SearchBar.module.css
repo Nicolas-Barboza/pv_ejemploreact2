@@ -1,0 +1,53 @@
+/* src/components/SearchBar.module.css */
+.searchContainer {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 20px;
+    box-sizing: border-box;
+    /* El padding izquierdo se maneja en el input, el derecho en el botón si es necesario */
+    /* padding-left: 15px; No es necesario si el input tiene su propio padding izquierdo */
+}
+
+.searchContainer:focus-within {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    border-color: #80bdff;
+}
+
+.searchInput {
+    flex-grow: 1;
+    height: 100%;
+    border: none;
+    outline: none;
+    background-color: #ffffff; /* Fondo blanco explícito */
+    color: #213547; /* Color de texto oscuro explícito */
+    padding: 0 15px; /* Padding horizontal. Vertical es 0 por height:100% */
+    font-size: 0.9em;
+    /* Quitar el border-radius del input si el .searchContainer ya lo tiene y usamos overflow:hidden */
+    /* O aplicarlo así para que las esquinas internas sean cuadradas */
+    border-radius: 19px 0 0 19px; /* Para que haga juego con el contenedor si este tiene borde */
+    box-sizing: border-box;
+}
+
+.searchIconButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0 15px; /* Padding horizontal para el icono */
+    /* Quitar el border-radius del botón si el .searchContainer ya lo tiene y usamos overflow:hidden */
+    border-radius: 0 19px 19px 0; /* Para que haga juego con el contenedor */
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    box-sizing: border-box;
+    /* margin-left: -1px; */ /* Considerar si es necesario para unir visualmente */
+}
+
+.searchIconButton:hover {
+    background-color: #0056b3;
+}

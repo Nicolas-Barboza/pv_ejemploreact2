@@ -1,34 +1,41 @@
+// src/components/NavBar.jsx
 import Logo from "./Logo";
-import SearchIcon from "./SearchIcon";
+import SearchBar from "./SearchBar"; // Importamos el nuevo componente
 import Styles from "./NavBar.module.css";
 
+
 function NavBar(props) {
+    // Extraemos terminoBusqueda y setTerminoBusqueda de la prop terminoBusquedaProp
     const [terminoBusqueda, setTerminoBusqueda] = props.terminoBusquedaProp;
-    const [modo, setModo] = props.modo;
+    // Extraemos setModo de la prop modo para manejar la navegación
+    // La prop original era modo={[modo, setModo]}, así que el segundo elemento es setModo
+    const setModo = props.modo[1];
+
 
     const handleGoHome = () => {
-        setModo("list");
-        setTerminoBusqueda(""); // Limpiar búsqueda al ir a inicio
+        setModo("list"); // Cambia el modo a 'list'
+        setTerminoBusqueda(""); // Limpia el término de búsqueda al ir a inicio
     };
 
     const handleAddNew = () => {
-        setModo("new");
+        setModo("new"); // Cambia el modo a 'new' para mostrar el formulario de nuevo producto
     };
 
-    const handleSearchIconClick = () => {
-        if (terminoBusqueda.trim() !== "") { // Solo busca si hay texto
-            props.handleClickBuscar(); 
-        } else {
-            // Opcional: si el input está vacío y se hace clic, volver a la lista completa
-            setModo("list");
-        }
+    // Esta función se pasará a SearchBar para manejar el cambio en el input
+    const handleSearchInputChange = (nuevoTermino) => {
+        setTerminoBusqueda(nuevoTermino);
     };
 
+    // Esta función se pasará a SearchBar para manejar el clic en el botón de búsqueda
+    // y simplemente llamará a la función handleClickBuscar que viene de App.jsx
+    const handleTriggerSearch = () => { // o el nombre que le hayas dado al handler del onClick del botón
+        props.handleClickBuscar(); // Llama directamente a la función de App.jsx
+    };
     return (
         <nav className={Styles.navBar}>
             <div className={Styles.navSection}>
                 <div className={Styles.logoContainer}>
-                    <Logo></Logo>
+                    <Logo /> {/* No necesita .children, es un componente auto-cerrado */}
                 </div>
                 <h1 className={Styles.pageTitle}>Gestor de Productos</h1>
             </div>
@@ -37,12 +44,15 @@ function NavBar(props) {
                     <a href="#" onClick={handleGoHome}>Inicio</a>
                     <a href="#" onClick={handleAddNew} className={Styles.addProducoButton}> Agregar Producto</a>
                 </div>
-                <div className={Styles.searchContainer}>
-                    <input type="text" placeholder="Buscar por descripción o ID" value={terminoBusqueda} onChange={(e) => setTerminoBusqueda(e.target.value)}></input>
-                    <button type="button" className={Styles.searchIconButton} onClick={handleSearchIconClick} aria-label="Buscar"><SearchIcon /></button>
-                </div>
+                {/* Usamos el nuevo componente SearchBar aquí */}
+                <SearchBar
+                    terminoBusqueda={terminoBusqueda}
+                    onTerminoBusquedaChange={handleSearchInputChange}
+                    onBuscar={handleTriggerSearch}
+                />
             </div>
         </nav>
     );
 }
+
 export default NavBar;

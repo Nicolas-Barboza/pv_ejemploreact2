@@ -1,12 +1,9 @@
-// src/App.jsx
-import { useEffect, useState, useCallback, useMemo } from 'react'; // Agregamos useCallback y useMemo
-// import UsuarioForm from './components/UsuarioForm'; // Renombrar a ProductForm
-// import UsuarioTabla from './components/UsuarioTabla'; // Renombrar a ProductList/ProductItem
+import { useEffect, useState, useCallback, useMemo } from 'react'; 
 import NavBar from './components/NavBar';
-import ProductForm from './components/ProductForm'; // Nuevo componente (a crear)
-import ProductList from './components/ProductList'; // Nuevo componente (a crear)
+import ProductForm from './components/ProductForm'; 
+import ProductList from './components/ProductList'; 
 
-let nextId = 0; // Para generar IDs de productos
+let nextId = 0; // ID inicial para los productos
 
 function App() {
   // Estado para la lista de productos. Iniciamos con un array vacío o datos de ejemplo.
@@ -38,11 +35,9 @@ function App() {
       const precio = parseFloat(productoActual.precioUnitario) || 0;
       const desc = parseFloat(productoActual.descuento) || 0;
       const precioConDesc = precio * (1 - desc / 100);
-      // Es buena práctica redondear a 2 decimales para precios
       setProductoActual(p => ({ ...p, precioConDescuento: parseFloat(precioConDesc.toFixed(2)) }));
     }
   }, [productoActual.precioUnitario, productoActual.descuento, modo]);
-
 
   // useEffect para mostrar cambios en el array de productos (como pide el TP)
   useEffect(() => {
@@ -86,9 +81,6 @@ function App() {
 
   // Filtrado de productos usando useMemo (como pide el TP)
   const productosFiltrados = useMemo(() => {
-    // Esta función SÍ debe ejecutarse cada vez que terminoBusqueda cambia,
-    // porque pre-calcula los resultados. PERO solo se mostrarán
-    // cuando el modo sea "search".
     if (!terminoBusqueda) return productos; // Devuelve todos si no hay término
     const busquedaLower = terminoBusqueda.toLowerCase();
     return productos.filter(producto =>
@@ -104,7 +96,7 @@ function App() {
     } else {
         setModo("list"); // Si el input está vacío, muestra la lista completa
     }
-  }, [terminoBusqueda]); // Depende de terminoBusqueda para decidir qué hacer
+  }, [terminoBusqueda,setModo]); // Depende de terminoBusqueda para decidir qué hacer
 
 
   // Renderizado condicional basado en el modo
@@ -142,13 +134,12 @@ function App() {
   return (
     <>
       <div>
-        <NavBar
-          // Pasamos el estado y el setter para terminoBusqueda
-          terminoBusquedaProp={[terminoBusqueda, setTerminoBusqueda]}
-          modo={[modo, setModo]}
-          handleClickBuscar={handleBuscarClick} // Pasamos la nueva función de búsqueda
+         <NavBar
+          terminoBusquedaProp={[terminoBusqueda, setTerminoBusqueda]} // Se mantiene igual
+          modo={[modo, setModo]} // Se mantiene igual, NavBar extraerá setModo
+          handleClickBuscar={handleBuscarClick} // Se mantiene igual
         />
-        <div  style={{ paddingTop: "60px", padding: "20px" }}> {/* Añade un poco de padding al contenido */}
+        <div  style={{ paddingTop: "60px", padding: "20px" }}>
           {renderContent()}
         </div>
       </div>

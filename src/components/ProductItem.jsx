@@ -21,15 +21,14 @@ function ProductItem({ producto, onEditar, onEliminar }) {
 
     // Calcula el precio con descuento para mostrarlo, asegurando que los valores sean numéricos
     const precioUnitario = parseFloat(producto.precioUnitario) || 0;
-    const descuento = parseFloat(producto.descuento) || 0;
-    const precioConDescuentoCalculado = precioUnitario * (1 - descuento / 100);
+    const precioConDescuentoCalculado = precioUnitario * (1 - (parseFloat(producto.descuento) || 0) / 100);
 
     return (
         <tr style={itemStyle}>
             <td style={cellStyle}>{producto.id}</td>
             <td style={cellStyle}>{producto.descripcion}</td>
             <td style={{ ...cellStyle, textAlign: "right" }}>${precioUnitario.toFixed(2)}</td>
-            <td style={{ ...cellStyle, textAlign: "center" }}>{descuento}%</td>
+            <td style={{ ...cellStyle, textAlign: "center" }}>{producto.descuento}%</td>
             <td style={{ ...cellStyle, textAlign: "right" }}>${precioConDescuentoCalculado.toFixed(2)}</td>
             <td style={{ ...cellStyle, textAlign: "center" }}>{producto.stock}</td>
             <td style={cellStyle}>
