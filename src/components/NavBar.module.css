@@ -1,38 +1,125 @@
-.horizontal a {
+/* src/components/NavBar.module.css */
+.navBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 0 25px;
+    color: #333;
+    width: 100%;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    height: 65px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.navSection {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logoContainer {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.logoContainer img { /* Asumiendo que Logo.jsx renderiza un img */
+    max-height: 40px;
+    width: auto;
+}
+
+.pageTitle {
+    font-size: 1.6em;
+    font-weight: 600;
+    margin: 0;
+    color: #2c3e50;
+}
+
+.navActions a { /* Estilos para los enlaces de acción */
     text-decoration: none;
-    text-align: center;
-    padding: 12px 10px;
-    font-family: Arial;
-    font-size: 8pt;
-    font-weight: bold;
-    color: #FFFFFF;
-    text-transform: uppercase;
-    border-right: 2px solid #607987;
-    background-color: #81888f;
-    letter-spacing: .08em
+    color: #3498db;
+    background-color: transparent;
+    padding: 10px 18px;
+    border-radius: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.95em;
+    font-weight: 500;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
 }
 
-.horizontal a:hover {
-    background-color: #680000;
-    color: #a2becf
+.navActions a:hover {
+    color: #2980b9;
+    background-color: #ecf0f1;
+    border-color: #bdc3c7;
 }
 
-
-.horizontal input {
-    margin-left: 24px;
-    text-align: center;
-    padding: 10px;    
-    font-family: Arial;
-    font-size: 8pt;
+.navActions .addProducoButton {
+    background-color: #2ecc71;
+    color: white;
+    border-color: #27ae60;
 }
 
-.horizontal button {
-    text-align: center;
-    padding: 10px;
-    font-family: Arial;
-    font-size: 8pt;
-    font-weight: bold;
-    color: #FFFFFF;
-    text-transform: uppercase;    
-    background-color: #81888f;    
+.navActions .addProducoButton:hover {
+    background-color: #27ae60;
+    border-color: #27ae60;
+    color: white;
+}
+
+.searchContainer {
+    display: flex;
+    align-items: center;
+    background-color: #f8f9fa;
+    border-radius: 20px;
+    /* Quitamos el padding-right que era para el icono no clickeable */
+    padding: 5px 5px 5px 15px; /* Ajustado para que el botón icono tenga su propio padding */
+    border: 1px solid #ced4da;
+    transition: box-shadow 0.2s ease-in-out;
+}
+
+.searchContainer:focus-within {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    border-color: #80bdff;
+}
+
+.searchContainer input {
+    padding: 8px 30px;
+    border-radius: 0;
+    border: none;
+    background-color: transparent;
+    font-size: 0.9em;
+    outline: none;
+    color: #495057;
+    flex-grow: 1;
+    min-width: 150px;
+}
+
+/* Estilo para el icono de búsqueda como botón */
+.searchIconButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #007bff; /* Color de botón primario */
+    color: white;
+    padding: 8px 12px; /* Padding para hacerlo similar a un botón */
+    border-radius: 0 20px 20px 0; /* Redondea solo los bordes derecho para que se una al input */
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    height: 100%; /* Para que ocupe la altura del searchContainer */
+    border: none; /* Quitamos borde si el contenedor ya lo tiene */
+    margin-left: -1px; /* Para superponer ligeramente sobre el borde del contenedor si es necesario */
+}
+
+.searchIconButton:hover {
+    background-color: #0056b3; /* Color más oscuro al pasar el ratón */
 }
