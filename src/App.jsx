@@ -11,6 +11,9 @@ function App() {
     { id: nextId++, descripcion: "Monitor LED 24 pulgadas", precioUnitario: 150, descuento: 5, stock: 20 },
     { id: nextId++, descripcion: "Teclado Mecánico RGB", precioUnitario: 75, descuento: 10, stock: 35 },
     { id: nextId++, descripcion: "Mouse Gamer Pro", precioUnitario: 40, descuento: 0, stock: 50 },
+    { id: nextId++, descripcion: "Laptop Gaming 15.6\"", precioUnitario: 1200, descuento: 15, stock: 10 },
+    { id: nextId++, descripcion: "Auriculares Inalámbricos", precioUnitario: 60, descuento: 20, stock: 25 },
+    { id: nextId++, descripcion: "Smartphone 6.5\"", precioUnitario: 800, descuento: 10, stock: 15 }
   ]);
 
   // Estado para el producto que se está editando o creando
